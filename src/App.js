@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Book from '../src/components/Book/Book';
 
 function App() {
+
+  const [books, setBooks ] = useState(
+    [
+      {
+        name:"A descoberta do mundo",
+        author:"Clarice Lispector",
+        pages:"480"
+      },
+      {
+        name:"Gênero e desigualdades",
+        author:"Flávia Biroli",
+        pages:"210"
+      },
+    ]
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Meu primeiro exemplo React</h1>
+      {books.map((book) => {
+        return(
+          <Book name={book.name} author={book.author} pages={book.pages} />
+        )
+      })}
     </div>
   );
 }
