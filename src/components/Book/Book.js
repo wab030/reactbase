@@ -3,8 +3,6 @@ import './Book.css';
 
 const Book = ( props ) => {
 
-    console.log( props );
-
     return(
         <div className='Book'>
             <p>{props.name}</p>
