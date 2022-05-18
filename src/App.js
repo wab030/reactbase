@@ -34,6 +34,29 @@ function App() {
 
   return (
     <div className="App">
+      <div className="row">
+        <div className="col-1-of-2">
+          Primeira coluna
+        </div>
+        <div className="col-1-of-2">
+          Segunda coluna
+        </div>
+      </div>
+      <div className="row">
+      <div className="col-1-of-3">
+          Primeira coluna
+        </div>
+        <div className="col-1-of-3">
+          Segunda coluna
+        </div>
+        <div className="col-1-of-3">
+          Terceira coluna
+        </div>
+      </div>
+
+
+
+
       <h1>Meu primeiro exemplo React</h1>
       <form onSubmit={onHandleBook}>
         <input type="text" id="name" placeholder="Digite o nome do livro" />
