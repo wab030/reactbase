@@ -1,10 +1,11 @@
 import React from 'react';
+import './Image.css';
 
-const Image = () => {
+const Image = ( props ) => {
 
     return (
         <div>
-            <img src="https://images.twinkl.co.uk/tr/image/upload/t_illustration/illustation/book.png" alt="Alguma imagem" />
+            <img src={props.image} alt="Alguma imagem" />
         </div>
     );
 }

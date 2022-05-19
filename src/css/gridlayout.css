@@ -1,11 +1,11 @@
 .row {
     max-width: 114rem;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     margin: 0 auto;
   }
   
   .row:not(:last-child) {
-    margin-bottom: var(--gutter-vertical);
+    /* margin-bottom: var(--gutter-vertical); */
   }
   
   .col-1-of-2 {
