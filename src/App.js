@@ -22,16 +22,28 @@ function App() {
     ]
   );
 
+  const [formValues, setFormValues] = useState({});
+
+  const [bookIndex, setBookIndex] = useState(null);
+
   const onHandleBook = (event) => {
     event.preventDefault(event);
-    const newBooks = [...books,
-    {
-      name: event.target.name.value,
-      author: event.target.author.value,
-      pages: event.target.pages.value,
-      urlImage: event.target.urlImage.value,
+    const newBooks = [];
+    if (bookIndex) {
+      console.log('Alterar');
+      setBookIndex(null);
+    } else {
+      console.log('Alterar');
+      newBooks = [...books,
+      {
+        name: event.target.name.value,
+        author: event.target.author.value,
+        pages: event.target.pages.value,
+        urlImage: event.target.urlImage.value,
+      }
+      ];
     }
-    ];
+
     setBooks(newBooks);
 
   }
@@ -41,9 +53,25 @@ function App() {
     console.log(index);
   }
 
+  const onChangeHandler = (index) => {
+    console.log('Chegue no on change handler');
+    const newFormValue = {
+      name: books[index].name,
+      author: books[index].author,
+      pages: books[index].pages,
+      urlImage: books[index].urlImage,
+    };
+    setFormValues(newFormValue);
+    setBookIndex(index);
+  }
+
+  const onHandleFormChange = (e) => {
+    console.log(e);
+  }
+
   return (
     <div className="App">
-     
+
       <div className='row'>
         <h1 className='text-center'>Cadastro de Livros</h1>
       </div>
@@ -58,12 +86,17 @@ function App() {
                 pages={book.pages}
                 urlImage={book.urlImage}
                 onDeleteHandler={() => onDeleteHandler(index)}
+                onChangeHandler={() => onChangeHandler(index)}
               />
             )
           })}
         </div>
         <div className='col-1-of-2'>
-          <BookForm onHandleBook={onHandleBook}/>
+          <BookForm
+            formValues={formValues}
+            onHandleBook={onHandleBook}
+            onHandleFormChange={() => onHandleFormChange()}
+          />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import './Book.css';
 const Book = (props) => {
 
     return (
-        <div className='Book row text-center'>
+        <div className='Book row text-center' onClick={props.onChangeHandler}>
             <div className='col-1-of-2'>
                 <div className='text-container'>
                     <p>{props.name}</p>
