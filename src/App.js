@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Book from '../src/components/Book/Book';
+import Books from './components/Books/Books.js';
 import BookForm from './components/BookForm/BookForm';
+import Header from './components/Header/Header';
 
 function App() {
 
@@ -23,12 +25,11 @@ function App() {
   );
 
   const [formValues, setFormValues] = useState({});
-
   const [bookIndex, setBookIndex] = useState(null);
 
   const onHandleBook = (event) => {
     event.preventDefault(event);
-    const newBooks = [];
+    let newBooks = [];
     if (bookIndex) {
       console.log('Alterar');
       setBookIndex(null);
@@ -71,34 +72,20 @@ function App() {
 
   return (
     <div className="App">
-
-      <div className='row'>
+      <BrowserRouter>
+        <Header />
         <h1 className='text-center'>Cadastro de Livros</h1>
-      </div>
-      <div className='row'>
-        <div className='col-1-of-2'>
-          {books.map((book, index) => {
-            return (
-              <Book
-                key={index}
-                name={book.name}
-                author={book.author}
-                pages={book.pages}
-                urlImage={book.urlImage}
-                onDeleteHandler={() => onDeleteHandler(index)}
-                onChangeHandler={() => onChangeHandler(index)}
-              />
-            )
-          })}
-        </div>
-        <div className='col-1-of-2'>
-          <BookForm
-            formValues={formValues}
-            onHandleBook={onHandleBook}
-            onHandleFormChange={() => onHandleFormChange()}
+        <Routes>
+          <Route path="/" element={<Books books={books} onDeleteHandler={onDeleteHandler} onChangeHandler={onChangeHandler} />} />
+          <Route path="/novolivro" element={
+            <BookForm
+              formValues={formValues}
+              onHandleBook={onHandleBook}
+              onHandleFormChange={() => onHandleFormChange()}
+            />}
           />
-        </div>
-      </div>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
